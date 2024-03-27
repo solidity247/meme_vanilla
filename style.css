@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-#filter {
+#search-bar {
     margin: 20px;
 }
 
@@ -59,11 +59,7 @@
 
     box-shadow: 0 0 10px rgba(212, 228, 228, 0.61);
 }
-  
-  /* https://getcssscan.com/css-buttons-examples */
-  
-  /* Winners high light style */
-  
+
 .meme-winner {
     box-shadow: 1px 1px 5px 14px rgba(20, 82, 38, 0.94);
     -webkit-box-shadow: 1px 1px 5px 14px rgba(20, 82, 38, 0.94);

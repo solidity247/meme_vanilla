@@ -1,74 +1,30 @@
+import card from "./src/components/card.js"
+import { restClient } from "./src/clients/restClient.js"
+import { shuffle } from "./src/utils/shuffle.js"
+
+// access input#filter and provided callback
+document.getElementById("filer").addEventListener("keyup", handleFilter);
+// accessed a container where to render pictures
+const cardContainer = document.getElementById("cards");
+
 // get data from server
-// filter if needed , using utility func
-// iterate and render all pictures using components
+// dont worry about new keyword "await"
+const memesResponse = await restClient.getMemes();
+const memes = shuffle(memesResponse.data.memes);
 
-const cardContainer = document.getElementById("cards")
-
-
-const tempData = [
-    {
-    "id": "181913649",
-    "name": "Drake Hotline Bling",
-    "url": "https://i.imgflip.com/30b1gx.jpg",
-    "width": 1200,
-    "height": 1200,
-    "box_count": 2,
-    "captions": 1219750
-    },
-    {
-    "id": "87743020",
-    "name": "Two Buttons",
-    "url": "https://i.imgflip.com/1g8my4.jpg",
-    "width": 600,
-    "height": 908,
-    "box_count": 3,
-    "captions": 977250
-    },
-    {
-    "id": "112126428",
-    "name": "Distracted Boyfriend",
-    "url": "https://i.imgflip.com/1ur9b0.jpg",
-    "width": 1200,
-    "height": 800,
-    "box_count": 3,
-    "captions": 1011500
-    },
-    {
-    "id": "217743513",
-    "name": "UNO Draw 25 Cards",
-    "url": "https://i.imgflip.com/3lmzyx.jpg",
-    "width": 500,
-    "height": 494,
-    "box_count": 2,
-    "captions": 540000
-    }
-]
-
-const el = tempData[0]
-// const URL = "https://api.imgflip.com/get_memes";
-
-function card (el) {
-    // destruct img url, name, id and 
-    // insert it in HTML
-
-
-    return `
-    <div id="cards">
-        <div class="meme-card">
-            <img class="meme-img" src="https://i.imgflip.com/3lmzyx.jpg" alt="">
-            <h3>Meme name</h3>
-            <button class="meme-card-button">Like!</button>
-            <p>likes: <span>0</span></p>
-        </div>
-    `
+// print cards in cardContainer
+function renderCards(memes){
+    cardContainer.innerHTML = memes.map( el=> card(el)).join("")
 }
 
-function renderCards(){
-    // prnt cards in cardContainer
+function handleFilter(e) {
+    // TODO:
+    // e.targ.val  - what you typed
+    // retreive inp value
+    // filter serverData    // use HOF filter, not any ather loop
+    // render filtered data using (renderCards)
 }
 
+// add like count to the functionality ===> extra for those who is looking for real challenge
 
-
-
-
-console.log(tempData)
+renderCards(memes)
